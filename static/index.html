@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<body>
+hello
+<input type="button" id="testButton">
+<input type="text" name="fun1">
+<input type="button" id="submitFun" value="计算结果">
+
+</body>
+<script>
+    $(function () {
+
+        $("#submitFun").click(function () {
+            $.ajax({
+                url: "/testFun1",        //后台url
+                data: {                          //数据
+
+                    id: $("input[name='fun1']").val()
+
+                },
+                type: "POST",                   //类型，POST或者GET
+                dataType: 'text',              //数据返回类型，可以是xml、json等
+                traditional:true,
+                success: function (data) {
+                    alert("success")
+                    // var str1 = data;
+                    // $("input[name=result]").val(str1);
+
+                    // str = "<tr><td>" + data[i].name + "</td><td>" + data[i].id + "</td></tr>";
+                    // $("#tab").append(str);
+
+                },
+                error: function (er) {          //失败，回调函数
+                    alert("error");
+                }
+            });
+        })
+    })
+</script>
+</html>
